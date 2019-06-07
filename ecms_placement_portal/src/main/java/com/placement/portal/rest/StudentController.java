@@ -19,20 +19,23 @@ import com.placement.portal.dto.ApiResponse;
 import com.placement.portal.dto.StudentReqDto;
 import com.placement.portal.dto.StudentUpdateDto;
 import com.placement.portal.model.Student;
+import com.placement.portal.service.SecurityService;
 import com.placement.portal.service.StudentService;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/api/v1/student/profile")
 public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
 
-	@PostMapping
-	public ApiResponse<Object> insertProfile(HttpServletRequest request, @Valid @RequestBody StudentReqDto stud)
-			throws Exception {
+	@Autowired
+	private SecurityService securityService;
 
-		String username = (String) request.getHeader("loggedInUsername");
+	@PostMapping
+	public ApiResponse<Object> insertProfile(@Valid @RequestBody StudentReqDto stud) throws Exception {
+
+		String username = securityService.findLoggedInUsername();
 
 		Student obj = new Student(stud.getRollNo(), stud.getFirstName(), stud.getMiddleName(), stud.getLastName(),
 				stud.getGender(), stud.getDob(), stud.getEmail(), stud.getPhone(), stud.getBranch(),
@@ -54,13 +57,12 @@ public class StudentController {
 	}
 
 	@PutMapping("/{id}")
-	public ApiResponse<Student> updateProfile(HttpServletRequest request, @PathVariable Long id,
-			@Valid @RequestBody StudentUpdateDto stud) {
+	public ApiResponse<Student> updateProfile(@PathVariable Long id, @Valid @RequestBody StudentUpdateDto stud) {
 
 		Optional<Student> op = studentService.findStudentById(id);
 		Student obj = null;
 
-		String username = (String) request.getHeader("loggedInUsername");
+		String username = securityService.findLoggedInUsername();
 		try {
 			if (op.isPresent()) {
 				obj = op.get();

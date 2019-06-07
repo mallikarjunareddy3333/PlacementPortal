@@ -28,7 +28,7 @@ import com.placement.portal.model.Notification;
 import com.placement.portal.service.NotificationServie;
 
 @RestController
-@RequestMapping("/notifications")
+@RequestMapping("/api/v1/notifications")
 public class NotificationsRest {
 
 	@Autowired
