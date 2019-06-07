@@ -1,5 +1,6 @@
 package com.placement.portal.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,8 @@ import javax.persistence.Table;
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	private String name;

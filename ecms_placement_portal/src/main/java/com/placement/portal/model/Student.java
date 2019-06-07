@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Student {
 
 	@Id
-	@Column(unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long sid;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
 
 	@Column(unique = true, nullable = false)
 	private String rollNo;
@@ -85,12 +85,12 @@ public class Student {
 		this.academicInfo = academicInfo;
 	}
 
-	public Long getSid() {
-		return sid;
+	public Long getId() {
+		return id;
 	}
 
-	public void setSid(Long sid) {
-		this.sid = sid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getRollNo() {

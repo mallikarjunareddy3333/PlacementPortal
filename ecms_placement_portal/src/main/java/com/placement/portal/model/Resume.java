@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -15,8 +16,8 @@ import javax.persistence.Table;
 public class Resume {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "RESUME_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	@Lob

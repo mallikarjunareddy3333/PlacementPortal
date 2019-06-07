@@ -13,8 +13,8 @@ import javax.persistence.Table;
 public class ProfileImage {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	@Lob

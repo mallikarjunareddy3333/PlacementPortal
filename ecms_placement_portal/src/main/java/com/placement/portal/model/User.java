@@ -21,8 +21,8 @@ import javax.persistence.Transient;
 public class User {
 
 	@Id
-	@Column(unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	@Column(unique = true, nullable = false)
