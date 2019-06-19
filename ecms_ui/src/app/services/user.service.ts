@@ -4,15 +4,18 @@ import { Observable } from 'rxjs';
 import { User } from '../models/User';
 import { LoginUser } from '../models/LoginUser';
 import { ApiResponse } from '../models/ApiResponse';
+import { environment } from '../../environments/environment';
+
+const API_URL = environment.apiUrl;
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UserService {
-    
-    registerUserURI = 'http://localhost:9090/api/v1/users/register';    
-    loginUserURI = 'http://localhost:9090/api/v1/token/generate';
+	    
+    registerUserURI = API_URL + '/api/v1/users/register';    
+    loginUserURI = API_URL + '/api/v1/token/generate';
 
     constructor(private http: HttpClient) { }
     
