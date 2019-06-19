@@ -4,5 +4,5 @@ export const environment = {
   production: false,
 
   // URL of production API
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://localhost:8080/ecms-api'
 };
