@@ -12,11 +12,6 @@ export class StudentComponent implements OnInit {
 
   ngOnInit() {
     
-    if(!window.localStorage.getItem('token')) {
-      this.router.navigate(['']);
-      return;
-    }
-    
   }
 
 }

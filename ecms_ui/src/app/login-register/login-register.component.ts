@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../_services/user.service';
 import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    templateUrl: './login-register.component.html',
+    styleUrls: ['./login-register.component.css']
 })
-export class HomeComponent implements OnInit {
+export class LoginRegisterComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder, private router:Router, private userService: UserService) { }
 
@@ -106,7 +106,11 @@ export class HomeComponent implements OnInit {
             this.userService.loginUser(loginPayload).subscribe(data => {
                 if(data.status === 200) {
                     window.localStorage.setItem('token', data.result.token);
-                    this.router.navigate(['student']);
+                    if( data.result.username == 'Admin' ) {
+                        this.router.navigate(['admin']);
+                    } else {
+                        this.router.navigate(['student']);
+                    }                    
                 }else {
                     this.invalidLogin = true;
                     alert(data.message);

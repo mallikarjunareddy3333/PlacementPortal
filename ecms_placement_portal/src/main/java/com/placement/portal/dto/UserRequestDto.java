@@ -1,5 +1,6 @@
 package com.placement.portal.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -12,17 +13,21 @@ public class UserRequestDto {
 
 	@NotNull
 	@NotEmpty
+	@NotBlank(message = "userName field is mandatory")
 	private String username;
 
 	@NotNull
 	@NotEmpty
 	@ValidPassword
+	@NotBlank(message = "password field is mandatory")
 	private String password;
 
 	@NotNull
 	@NotEmpty
+	@NotBlank(message = "PasswordConfirm field is mandatory")
 	private String passwordConfirm;
 
+	@NotBlank(message = "email is mandatory")
 	@NotNull
 	@NotEmpty
 	@ValidEmail
@@ -30,10 +35,12 @@ public class UserRequestDto {
 
 	@NotNull
 	@NotEmpty
+	@NotBlank(message = "phone is mandatory")
 	private String phone;
 
 	@NotNull
 	@NotEmpty
+	@NotBlank(message = "role_name is mandatory")
 	private String role_name;
 
 	public String getUsername() {

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/User';
-import { LoginUser } from '../models/LoginUser';
-import { ApiResponse } from '../models/ApiResponse';
 import { environment } from '../../environments/environment';
+import { User } from '../_models/User';
+import { ApiResponse } from '../_models/ApiResponse';
+import { LoginUser } from '../_models/LoginUser';
 
 const API_URL = environment.apiUrl;
 
