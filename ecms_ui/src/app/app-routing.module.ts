@@ -4,26 +4,35 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { StudentComponent } from './student/student.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { Role } from './_models/Role';
 
 
 const routes: Routes = [
-    { path:'', component:LoginRegisterComponent },
-    { path: 'student', component:StudentComponent, canActivate: [AuthGuard],
-    children: [
-      {
-        path: '**',
-        redirectTo: ''
+  { 
+    path:'', 
+    component:LoginRegisterComponent 
+  },
+  { 
+    path: 'student', 
+    component:StudentComponent, 
+    canActivate: [AuthGuard],
+    data: { 
+      roles: [Role.User] 
+    }
+  },
+  { 
+      path: 'admin', 
+      component:AdminComponent, 
+      canActivate: [AuthGuard],
+      data: { 
+        roles: [Role.Admin] 
       }
-    ] },
-    { path: 'admin', component:AdminComponent, canActivate: [AuthGuard],
-    children: [
-      {
-        path: '**',
-        redirectTo: ''
-      }
-    ] },
+    },
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { 
+      path: '**', 
+      redirectTo: '' 
+    }
 
 ];
 

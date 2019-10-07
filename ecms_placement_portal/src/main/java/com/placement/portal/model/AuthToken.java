@@ -8,13 +8,13 @@ public class AuthToken {
 
 	private String username;
 
-	private Set<Role> roles;
+	private String[] roles;
 
 	public AuthToken() {
 
 	}
 
-	public AuthToken(String token, String username, Set<Role> roles) {
+	public AuthToken(String token, String username, String[] roles) {
 		this.token = token;
 		this.username = username;
 		this.roles = roles;
@@ -36,11 +36,11 @@ public class AuthToken {
 		this.username = username;
 	}
 	
-	public Set<Role> getRoles() {
+	public String[] getRoles() {
 		return roles;
 	}
 	
-	 public void setRoles(Set<Role> roles) {
+	 public void setRoles(String[] roles) {
 		this.roles = roles;
 	}
 

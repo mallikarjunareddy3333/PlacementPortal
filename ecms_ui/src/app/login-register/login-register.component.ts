@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../_services/user.service';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { AuthenticationService } from '../_services/authentication.service';
+import { first } from 'rxjs/operators';
+import { Role } from '../_models/Role';
 
 @Component({
     selector: 'app-home',
@@ -10,14 +13,24 @@ import { Router } from "@angular/router";
 })
 export class LoginRegisterComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder, private router:Router, private userService: UserService) { }
-
+    returnUrl: string;
     loginForm: FormGroup;
     registerForm: FormGroup;
     showSuccessMsg = false;
     showErrMsg = false;
     error_message: '';
     invalidLogin: boolean = false;
+
+    constructor(
+        private formBuilder: FormBuilder, 
+        private router:Router, 
+        private route: ActivatedRoute,
+        private userService: UserService, 
+        private authenticationService: AuthenticationService
+    ) {        
+        this.returnUrl = this.authenticationService.getReturnUrl();
+        this.router.navigate([this.returnUrl]);
+    }
 
     ngOnInit() {
 
@@ -38,10 +51,10 @@ export class LoginRegisterComponent implements OnInit {
             phone: ['', Validators.required]
         });
 
-        if( window.localStorage.getItem('token') ) {
-            this.router.navigate(['student']);
-            return;
-        }
+        console.log(this.returnUrl);
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.authenticationService.getReturnUrl();        
+        this.router.navigate([this.returnUrl]);
 
     }
 
@@ -94,7 +107,7 @@ export class LoginRegisterComponent implements OnInit {
 
         login() {
 
-            if (!this.loginForm.valid) {
+            if (this.loginForm.invalid) {
                 return;
             }
 
@@ -103,19 +116,24 @@ export class LoginRegisterComponent implements OnInit {
                 password: this.loginForm.controls.password.value
             };
 
-            this.userService.loginUser(loginPayload).subscribe(data => {
-                if(data.status === 200) {
-                    window.localStorage.setItem('token', data.result.token);
-                    if( data.result.username == 'Admin' ) {
-                        this.router.navigate(['admin']);
-                    } else {
-                        this.router.navigate(['student']);
-                    }                    
-                }else {
-                    this.invalidLogin = true;
-                    alert(data.message);
-                }
-            });
-
+            this.authenticationService.login(loginPayload)
+                .pipe(first())
+                .subscribe(
+                    data => {
+                        debugger;
+                        console.log(this.returnUrl);
+                        this.returnUrl = this.authenticationService.getReturnUrl();
+                        this.router.navigate([this.returnUrl]);
+                    },
+                    error => {
+                        console.log(error);
+                        console.log(this.returnUrl);
+                        this.invalidLogin = true;
+                    });
         }
+
     }
+
+    
+
+

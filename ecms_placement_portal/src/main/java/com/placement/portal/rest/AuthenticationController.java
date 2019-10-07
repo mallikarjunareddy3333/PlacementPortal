@@ -1,5 +1,7 @@
 package com.placement.portal.rest;
 
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,9 @@ public class AuthenticationController {
 				new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
 		final User user = userService.findOne(loginUser.getUsername());
 		final String token = jwtTokenUtil.generateToken(user);
-		return new ApiResponse<>(200, "success", new AuthToken(token, loginUser.getUsername(), user.getRoles()));
-
+		
+		String[] roles = user.getRoles().stream().map(sc -> sc.getName()).toArray(String[]::new);
+		return new ApiResponse<>(200, "success", new AuthToken(token, loginUser.getUsername(), roles ));
 	}
 
 }
