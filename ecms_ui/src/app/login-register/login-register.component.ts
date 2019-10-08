@@ -120,14 +120,11 @@ export class LoginRegisterComponent implements OnInit {
                 .pipe(first())
                 .subscribe(
                     data => {
-                        debugger;
                         console.log(this.returnUrl);
                         this.returnUrl = this.authenticationService.getReturnUrl();
                         this.router.navigate([this.returnUrl]);
                     },
                     error => {
-                        console.log(error);
-                        console.log(this.returnUrl);
                         this.invalidLogin = true;
                     });
         }
