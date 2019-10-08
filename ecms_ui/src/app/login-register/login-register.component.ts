@@ -53,8 +53,9 @@ export class LoginRegisterComponent implements OnInit {
         console.log(this.returnUrl);
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.authenticationService.getReturnUrl();        
+        
         this.router.navigate([this.returnUrl]);
-
+        
     }
 
     createUser() {

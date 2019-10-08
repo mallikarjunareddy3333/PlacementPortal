@@ -6,24 +6,21 @@ import { StudentComponent } from './student.component';
 
 const routes: Routes = [
     {
-    path: 'student',
-    component: StudentComponent,
-    children: [
-        {
-            path: '',
-            redirectTo: 'home',
-            pathMatch: 'full'
-        },
-        {
-            path: 'home',
-            component: StudentHomeComponent
-        },
-        {
-            path: 'profile',
-            component: ProfileComponent
-        }
-    ]
-  }
+        path: '',
+        component: StudentComponent
+    },
+    {
+        path: 'student',
+        component: StudentComponent
+    },
+    {
+        path: 'home',
+        component: StudentHomeComponent
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent
+    }
 
 ];
 
