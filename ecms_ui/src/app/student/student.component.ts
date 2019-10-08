@@ -8,10 +8,12 @@ import {Router} from "@angular/router";
 })
 export class StudentComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    console.log("app-student-constructor");
+   }
 
   ngOnInit() {
-    
+    console.log("app-student-ngoninit");
   }
 
 }

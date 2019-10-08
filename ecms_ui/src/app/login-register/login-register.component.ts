@@ -4,10 +4,9 @@ import { UserService } from '../_services/user.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from '../_services/authentication.service';
 import { first } from 'rxjs/operators';
-import { Role } from '../_models/Role';
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-login',
     templateUrl: './login-register.component.html',
     styleUrls: ['./login-register.component.css']
 })
