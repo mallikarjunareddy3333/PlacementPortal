@@ -60,10 +60,11 @@ export class AuthenticationService {
             
             if(roles.includes(Role.Admin)){
                 returnUrl = "admin";
-            } else {
+            } else if(roles.includes(Role.User)) {
                 returnUrl = "student";
+            } else {
+                returnUrl = '';
             }
-
         }
         return returnUrl;
     }
