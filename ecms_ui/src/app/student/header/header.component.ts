@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import { AuthenticationService } from '../_services/authentication.service';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+  selector: 'student-app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class StudentComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     console.log("app-student-constructor");
@@ -19,6 +19,7 @@ export class StudentComponent implements OnInit {
 
   logout(){
     this.authenticationService.logout();
+    this.router.navigate([this.authenticationService.getReturnUrl()]);
   }
 
 }
