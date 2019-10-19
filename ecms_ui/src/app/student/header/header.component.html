@@ -6,8 +6,18 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" (click)="home_component=true; profile_component=false;">Home</a></li>
-        <li class="nav-item"><a class="nav-link" (click)="home_component=false; profile_component=true;">Profile</a></li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="home_component=true; profile_component=false;">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" (click)="home_component=false; profile_component=true;">Display Profile</a>
+              <a class="dropdown-item" (click)="home_component=false; profile_component=true;">Edit Profile</a>
+              <a class="dropdown-item" (click)="home_component=false; profile_component=true;">Change Password</a>
+            </div>
+          </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item"><a class="nav-link" href="#" (click)="logout()">Logout</a></li>
@@ -16,3 +26,4 @@
   </nav>
 <student-home *ngIf="home_component"></student-home>
 <student-profile *ngIf="profile_component"></student-profile>
+<app-footer></app-footer>

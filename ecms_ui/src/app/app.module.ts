@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TokenInterceptor } from "./_helpers/interceptor";
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { CoreRoutingModule } from './core/core-routing-module';
+import { AppRoutingModule } from './app-routing-module';
 
 @NgModule({
     declarations: [
@@ -19,7 +19,7 @@ import { CoreRoutingModule } from './core/core-routing-module';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        CoreRoutingModule,
+        AppRoutingModule,
         CoreModule
     ],
     providers: [UserService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
