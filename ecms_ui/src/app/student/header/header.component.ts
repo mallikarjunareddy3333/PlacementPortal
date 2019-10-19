@@ -9,12 +9,15 @@ import { AuthenticationService } from '../../_services/authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
-    console.log("app-student-constructor");
-   }
+  home_component: boolean; 
+  profile_component: boolean;
+
+  constructor(private router: Router, private authenticationService: AuthenticationService) { 
+  }
 
   ngOnInit() {
-    console.log("app-student-ngoninit");
+    this.home_component = true;
+    this.profile_component = false;
   }
 
   logout(){

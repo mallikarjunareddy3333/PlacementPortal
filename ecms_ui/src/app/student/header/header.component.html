@@ -1,12 +1,18 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-  <div class="container">
-      <a class="navbar-brand">Placement Portal</a>
-      <ul class="nav navbar-nav" routerLinkActive="active">
-          <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="profile">Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#" (click)="logout()">Logout</a></li>
-      </ul>
-  </div>
-</nav>
+<nav class="navbar navbar-expand-md navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand logo-text" href="#">Placement Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<router-outlet></router-outlet>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" (click)="home_component=true; profile_component=false;">Home</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="home_component=false; profile_component=true;">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a class="nav-link" href="#" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+<student-home *ngIf="home_component"></student-home>
+<student-profile *ngIf="profile_component"></student-profile>

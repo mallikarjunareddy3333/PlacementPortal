@@ -1,16 +1,18 @@
 .login_form_container {
     display: flex;
-    background-color: #3b5998;
-    background-image: linear-gradient(#4e69a2, #3b5998 50%);
-    border-bottom: 1px solid #133783;
-    min-height: 42px;
+    min-height: 4.625rem;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
-.login_form_header  .logo_text,
 .login_form_wrapper .label_text {
     color: #ffffff;
+}
+
+.login_form_header a.navbar-brand.logo-text {
+    font-size: 2rem;
+    padding-top: .825rem;
 }
 
 .login_form_header {
