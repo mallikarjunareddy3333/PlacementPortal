@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HeaderComponent } from './header/header.component';
+import { StudentComponent } from './student/student.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StudentRoutingModule } from './student-routing-module';
@@ -9,7 +9,7 @@ import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
-    HeaderComponent, 
+    StudentComponent, 
     HomeComponent, 
     ProfileComponent
   ],

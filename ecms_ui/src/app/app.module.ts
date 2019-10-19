@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { UserService } from './_services/user.service';
+import { UserService } from './core/_services/user.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { TokenInterceptor } from "./_helpers/interceptor";
+import { TokenInterceptor } from "./core/_helpers/interceptor";
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing-module';

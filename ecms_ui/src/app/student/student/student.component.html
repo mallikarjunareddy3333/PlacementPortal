@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand logo-text" href="#">Placement Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="contact_us=false; home_component=true; profile_component=false;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="profile_component=true; contact_us=false; home_component=false;">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="contact_us=true; profile_component=false; home_component=false;">Contact</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">        
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{loggedInUser}}</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown04">
+                <a class="dropdown-item"  href="#" (click)="logout()">Logout</a>
+            </div>
+          </li>
+      </ul>
+    </div>
+</nav>
+
+<student-home *ngIf="home_component"></student-home>
+<student-profile *ngIf="profile_component"></student-profile>
+<app-contact *ngIf="contact_us"></app-contact>
+<app-footer></app-footer>

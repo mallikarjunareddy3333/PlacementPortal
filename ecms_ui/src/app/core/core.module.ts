@@ -4,11 +4,13 @@ import { CoreRoutingModule } from './core-routing-module';
 import { loginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     loginRegisterComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
     CoreRoutingModule
   ],
   exports: [
+    ContactComponent,
     FooterComponent
   ]
 })
