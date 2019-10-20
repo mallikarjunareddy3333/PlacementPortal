@@ -15,7 +15,7 @@ const routes: Routes = [
         data: { 
           roles: [Role.User] 
         },
-        loadChildren: './student/student.module#StudentModule'
+        loadChildren: '../student/student.module#StudentModule'
     },
     {
         path: 'student',
@@ -23,7 +23,7 @@ const routes: Routes = [
         data: { 
           roles: [Role.User] 
         },
-        loadChildren: './admin/admin.module#AdminModule'
+        loadChildren: '../admin/admin.module#AdminModule'
     },
     { 
         path: '**', 
