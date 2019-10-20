@@ -10,9 +10,8 @@ import { AuthenticationService } from '../../core/_services/authentication.servi
 export class StudentComponent implements OnInit {
 
   home_component: boolean;
-  display_profile_component: boolean; 
   contact_us: boolean;
-  edit_profile_component:boolean;
+  profile_component:boolean;
 
   loggedInUser: string;
 
@@ -20,9 +19,8 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.home_component = true;
-    this.display_profile_component = false;
-    this.edit_profile_component = false;
+    this.home_component = false;
+    this.profile_component = true;
     this.contact_us=false;
 
     this.loggedInUser = this.authenticationService.currentUserValue.username;
