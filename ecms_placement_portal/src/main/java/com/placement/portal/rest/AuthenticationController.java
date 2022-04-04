@@ -1,7 +1,5 @@
 package com.placement.portal.rest;
 
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

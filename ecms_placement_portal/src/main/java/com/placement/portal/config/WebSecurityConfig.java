@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -36,10 +37,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}
 
 	@Autowired
-	public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
@@ -50,20 +57,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers("/", "/login", "/api/v1/token/*", "/api/v1/users/register")
-				.permitAll().antMatchers("/api/admin/**").hasRole("ADMIN")
-				.antMatchers(HttpMethod.POST, "/api/notification/**").hasRole("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/notification/**").hasRole("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/notification/**").hasRole("ADMIN")
-				.anyRequest().authenticated().and().exceptionHandling()
-				.authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
+				.antMatchers("/", "/login", "/api/v1/token/*", "/api/v1/users/register").permitAll()
+				.antMatchers("/api/admin/**").hasRole("ADMIN").antMatchers(HttpMethod.POST, "/api/notification/**")
+				.hasRole("ADMIN").antMatchers(HttpMethod.PUT, "/api/notification/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.DELETE, "/api/notification/**").hasRole("ADMIN").anyRequest().authenticated()
+				.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-	}
-
-	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
 	}
 
 }
